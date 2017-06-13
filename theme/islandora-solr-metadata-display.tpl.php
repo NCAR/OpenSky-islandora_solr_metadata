@@ -30,7 +30,11 @@
           <?php print $value['display_label']; ?>
         </dt>
         <dd class="<?php print $row_field == 0 ? ' first' : ''; ?>">
-          <?php print check_markup(implode($variables['separator'], $value['value']), 'islandora_solr_metadata_filtered_html'); ?>
+          <?php if (!($value['solr_field'] == 'mods_doi_uri')): ?> 
+            <?php print check_markup(implode($variables['separator'], $value['value']), 'islandora_solr_metadata_filtered_html'); ?>
+          <?php else: ?>
+            <?php print l($value['value'][0], $value['value'][0]); ?>
+          <?php endif; ?>    
         </dd>
         <?php $row_field++; ?>
       <?php endforeach; ?>
